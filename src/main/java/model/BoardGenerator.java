@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class BoardGenerator {
 
-  private boolean isSafe(int[][] board, int row, int col, int num) {
+  private static boolean isSafe(int[][] board, int row, int col, int num) {
 
       //Sprawdzamy czy ta liczba jest unikalna w wierszu
     for (int d = 0; d < board.length; d++) {
@@ -41,7 +41,7 @@ public class BoardGenerator {
 return true;
   }
 
-  public boolean solveSudoku(int[][] board, int n) {
+  public static boolean solveSudoku(int[][] board, int n) {
     int row = -1;
     int col = -1;
     Random random = new Random();
@@ -79,7 +79,7 @@ return true;
     return false;
   }
   //metoda wypelniajaca pierwszy wiersz randomowymi liczbami(niepowtarzającymi się)
-  private void fillFirstRow(int[][] board) {
+  private static void fillFirstRow(int[][] board) {
     Random rand = new Random();
 
     List<Integer> list = new ArrayList();
@@ -92,7 +92,7 @@ return true;
     }
   }
 //generowanie tablicy z samymi zerami oraz pierwszym randomowym wierszem
-  public int[][] generateBoard() {
+  public static int[][] generateBoard() {
     int[][] board = new int[9][9];
     for (int i = 0; i < 9; i++) {
       for (int j = 0; j < 9; j++) {
