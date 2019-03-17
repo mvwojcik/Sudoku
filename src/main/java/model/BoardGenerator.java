@@ -1,13 +1,20 @@
 package model;
 
+import utils.BoardUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class BoardGenerator {
 
-  private static boolean isSafe(int[][] board, int row, int col, int num) {
+public class BoardGenerator {
+  protected BoardGenerator() {
+
+  }
+
+  private static boolean isSafe(final int[][] board,
+                                final int row, final int col, final int num) {
 
       //Sprawdzamy czy ta liczba jest unikalna w wierszu
     for (int d = 0; d < board.length; d++) {
@@ -41,7 +48,8 @@ public class BoardGenerator {
 return true;
   }
 
-  public static boolean solveSudoku(int[][] board, int n) {
+
+  public static boolean solveSudoku(final int[][] board, final int n) {
     int row = -1;
     int col = -1;
     Random random = new Random();
@@ -78,24 +86,25 @@ return true;
     }
     return false;
   }
-  //metoda wypelniajaca pierwszy wiersz randomowymi liczbami(niepowtarzającymi się)
-  private static void fillFirstRow(int[][] board) {
+  //metoda wypelniajaca pierwszy wiersz
+  // randomowymi liczbami(niepowtarzającymi się)
+  private static void fillFirstRow(final int[][] board) {
     Random rand = new Random();
 
     List<Integer> list = new ArrayList();
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < BoardUtils.SIZE; i++) {
       list.add(i);
     }
     Collections.shuffle(list);
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < BoardUtils.SIZE; i++) {
       board[0][i] = list.get(i) + 1;
     }
   }
 //generowanie tablicy z samymi zerami oraz pierwszym randomowym wierszem
   public static int[][] generateBoard() {
-    int[][] board = new int[9][9];
-    for (int i = 0; i < 9; i++) {
-      for (int j = 0; j < 9; j++) {
+    int[][] board = new int[BoardUtils.SIZE][BoardUtils.SIZE];
+    for (int i = 0; i < BoardUtils.SIZE; i++) {
+      for (int j = 0; j < BoardUtils.SIZE; j++) {
         board[i][j] = 0;
       }
     }
