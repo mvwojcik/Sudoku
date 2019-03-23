@@ -16,11 +16,14 @@ public class BoardGeneratorTest {
   public void initBoards() {
     this.sudokuBoard1 = new SudokuBoard();
     this.sudokuBoard2 = new SudokuBoard();
+    sudokuBoard1.fillBoard();
+    sudokuBoard2.fillBoard();
   }
 
   @Test
   public void check3() {
     SudokuBoard sudokuBoard = new SudokuBoard();
+    sudokuBoard.fillBoard();
     for (int z = 0; z < 3; z++) {
       for (int k = 0; k < 3; k++) {
         for (int i = k * 3; i < 3 * k + 3; i++) {

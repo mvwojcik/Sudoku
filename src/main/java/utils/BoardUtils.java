@@ -12,5 +12,6 @@ public static final byte SIZE = 9;
       }
       System.out.println();
     }
+    System.out.println();
   }
 }

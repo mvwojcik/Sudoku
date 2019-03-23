@@ -2,39 +2,127 @@ package model;
 
 import utils.BoardUtils;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class SudokuBoard {
-  private int[][] board;
+    private int[][] board;
 
-  public SudokuBoard() {
-
-    this.board = BoardGenerator.generateBoard();
-    fillBoard();
-  }
-
-  public final void fillBoard() {
-    BoardGenerator.solveSudoku(this.board, BoardUtils.SIZE);
-  }
-
-  public final int[][] getBoard() {
-    return this.board;
-  }
-
-  @Override
-  public final boolean equals(final Object o) {
-    if (this == o) {
-      return true;
+    public SudokuBoard() {
+        this.board = new int[9][9];
     }
-    if (!(o instanceof SudokuBoard)) {
-      return false;
-    }
-    SudokuBoard that = (SudokuBoard) o;
-    return Arrays.equals(this.getBoard(), that.getBoard());
-  }
 
-  @Override
-  public final int hashCode() {
-    return Arrays.hashCode(getBoard());
-  }
+    public final void fillBoard() {
+        fillFirstRow(board);
+        this.solveSudoku(this.board, BoardUtils.SIZE);
+    }
+
+    public final int[][] getBoard() {
+        return this.board;
+    }
+
+    @Override
+    public final boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SudokuBoard)) {
+            return false;
+        }
+        SudokuBoard that = (SudokuBoard) o;
+        return Arrays.equals(this.getBoard(), that.getBoard());
+    }
+
+    @Override
+    public final int hashCode() {
+        return Arrays.hashCode(getBoard());
+    }
+
+
+    private static boolean isSafe(final int[][] board,
+                                  final int row, final int col, final int num) {
+
+        //Sprawdzamy czy ta liczba jest unikalna w wierszu
+        for (int d = 0; d < board.length; d++) {
+            if (board[row][d] == num) {
+                return false;
+            }
+        }
+
+        //Sprawdzamy czy liczba jest unikalna w kolumnie
+        for (int r = 0; r < board.length; r++) {
+
+            if (board[r][col] == num) {
+                return false;
+            }
+        }
+
+//Sprawdzamy w kwadracie 3x3 liczba jest unikalna
+        int sqrt = (int) Math.sqrt(board.length);
+        int boxRowStart = row - row % sqrt;
+        int boxColStart = col - col % sqrt;
+
+        for (int r = boxRowStart; r < boxRowStart + sqrt; r++) {
+            for (int d = boxColStart; d < boxColStart + sqrt; d++) {
+                if (board[r][d] == num) {
+                    return false;
+                }
+            }
+        }
+
+// mozna umiescic ja na tej pozycji
+        return true;
+    }
+
+
+    private boolean solveSudoku(final int[][] board, final int n) {
+
+        int row = -1;
+        int col = -1;
+        Random random = new Random();
+        boolean isEmpty = true;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 0) {
+                    row = i;
+                    col = j;
+
+                    isEmpty = false;
+                    break;
+                }
+            }
+            if (!isEmpty) {
+                break;
+            }
+        }
+
+        if (isEmpty) {
+            return true;
+        }
+
+
+        for (int num = 1; num <= n; num++) {
+            if (isSafe(board, row, col, num)) {
+                board[row][col] = num;
+                if (solveSudoku(board, n)) {
+                    return true;
+                } else {
+                    board[row][col] = 0; // replace it
+                }
+            }
+        }
+        return false;
+    }
+
+    private static void fillFirstRow(final int[][] board) {
+        Random rand = new Random();
+
+        List<Integer> list = new ArrayList();
+        for (int i = 0; i < BoardUtils.SIZE; i++) {
+            list.add(i);
+        }
+        Collections.shuffle(list);
+        for (int i = 0; i < BoardUtils.SIZE; i++) {
+            board[0][i] = list.get(i) + 1;
+        }
+    }
 }
