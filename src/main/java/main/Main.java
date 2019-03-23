@@ -10,7 +10,7 @@ public class Main {
     public static void main(final String[] args) {
 
         SudokuBoard board = new SudokuBoard();
-        board.fillBoard();
+     //   board.fillBoard();
         BoardUtils.printBoard(board.getBoard());
     }
 }
