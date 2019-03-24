@@ -2,12 +2,15 @@ package boardtests;
 
 import algorithms.BackTrackingSudokuSolver;
 import model.SudokuBoard;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.TreeSet;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class BoardGeneratorTest {
 
   SudokuBoard sudokuBoard1;
@@ -15,7 +18,7 @@ public class BoardGeneratorTest {
   BackTrackingSudokuSolver sudokuBoard1Solver;
   BackTrackingSudokuSolver sudokuBoard2Solver;
 
-  @Before
+  @BeforeAll
   public void initBoards() {
     this.sudokuBoard1 = new SudokuBoard();
     this.sudokuBoard2 = new SudokuBoard();
@@ -33,8 +36,9 @@ public class BoardGeneratorTest {
         for (int i = k * 3; i < 3 * k + 3; i++) {
           TreeSet<Integer> values = new TreeSet<Integer>();
           for (int j = z * 3; j < 3 * z + 3; j++) {
-            System.out.print(sudokuBoard1.get(i,j));
-            Assert.assertTrue(values.add(sudokuBoard1.get(i,j)));
+            System.out.print(sudokuBoard1.get(i, j));
+
+            assertTrue(values.add(sudokuBoard1.get(i, j)));
           }
           System.out.println();
         }
@@ -45,8 +49,8 @@ public class BoardGeneratorTest {
 
   @Test
   public void checkRandomBoardsGeneration() {
-    Assert.assertFalse(sudokuBoard1 == sudokuBoard2);
-    Assert.assertFalse(sudokuBoard1.equals(sudokuBoard2));
+    assertFalse(sudokuBoard1 == sudokuBoard2);
+    assertFalse(sudokuBoard1.equals(sudokuBoard2));
   }
 
   @Test
@@ -54,8 +58,8 @@ public class BoardGeneratorTest {
     for (int i = 0; i < 9; i++) {
       TreeSet<Integer> values = new TreeSet<Integer>();
       for (int j = 0; j < 9; j++) {
-        Assert.assertTrue(values.add(sudokuBoard1.get(i,j)));
-        Assert.assertFalse(values.add(sudokuBoard1.get(i,j)));
+        assertTrue(values.add(sudokuBoard1.get(i, j)));
+        assertFalse(values.add(sudokuBoard1.get(i, j)));
       }
     }
   }
@@ -65,8 +69,8 @@ public class BoardGeneratorTest {
     for (int i = 0; i < 9; i++) {
       TreeSet<Integer> values = new TreeSet<Integer>();
       for (int j = 0; j < 9; j++) {
-        Assert.assertTrue(values.add(sudokuBoard1.get(i,j)));
-        Assert.assertFalse(values.add(sudokuBoard1.get(i,j)));
+        assertTrue(values.add(sudokuBoard1.get(i, j)));
+        assertFalse(values.add(sudokuBoard1.get(i, j)));
       }
     }
   }
