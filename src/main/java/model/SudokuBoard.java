@@ -2,25 +2,26 @@ package model;
 
 import utils.BoardUtils;
 
-import java.util.*;
+import java.util.Arrays;
+
 
 public class SudokuBoard {
     private int[][] board;
 
     public SudokuBoard() {
-        this.board = new int[9][9];
+        this.board = new int[BoardUtils.SIZE][BoardUtils.SIZE];
     }
 
     public final int[][] getBoard() {
         return this.board;
     }
 
-    public int set(int x, int y,int value){
+    public final int set(final int x, final int y, final int value) {
         this.board[y][x] = value;
         return value;
     }
 
-    public int get(int x, int y){
+    public final int get(final int x, final int y) {
         return  this.board[y][x];
     }
 

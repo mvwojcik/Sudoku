@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Random;
 
 public class BackTrackingSudokuSolver implements SudokuSolver {
-    public void solve(SudokuBoard sudokuBoard) {
+    public final void solve(final SudokuBoard sudokuBoard) {
         fillFirstRow(sudokuBoard);
-        solveSudoku(sudokuBoard,BoardUtils.SIZE);
+        solveSudoku(sudokuBoard, BoardUtils.SIZE);
     }
 
 
-    private boolean isSafe(SudokuBoard board,
+    private boolean isSafe(final SudokuBoard board,
                                   final int row, final int col, final int num) {
 
         //Sprawdzamy czy ta liczba jest unikalna w wierszu
         for (int d = 0; d < BoardUtils.SIZE; d++) {
-            if (board.get(row,d) == num) {
+            if (board.get(row, d) == num) {
                 return false;
             }
         }
@@ -28,7 +28,7 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
         //Sprawdzamy czy liczba jest unikalna w kolumnie
         for (int r = 0; r < BoardUtils.SIZE; r++) {
 
-            if (board.get(r,col) == num) {
+            if (board.get(r, col) == num) {
                 return false;
             }
         }
@@ -40,7 +40,7 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
 
         for (int r = boxRowStart; r < boxRowStart + sqrt; r++) {
             for (int d = boxColStart; d < boxColStart + sqrt; d++) {
-                if (board.get(r,d) == num) {
+                if (board.get(r, d) == num) {
                     return false;
                 }
             }
@@ -51,15 +51,14 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
     }
 
 
-    private boolean solveSudoku(SudokuBoard board, final int n) {
+    private boolean solveSudoku(final SudokuBoard board, final int n) {
 
         int row = -1;
         int col = -1;
-        Random random = new Random();
         boolean isEmpty = true;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if ( board.get(i,j) == 0) {
+                if (board.get(i, j) == 0) {
                     row = i;
                     col = j;
 
@@ -79,18 +78,18 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
 
         for (int num = 1; num <= n; num++) {
             if (isSafe(board, row, col, num)) {
-                board.set(row,col,num);
+                board.set(row, col, num);
                 if (solveSudoku(board, n)) {
                     return true;
                 } else {
-                    board.set(row,col,0);
+                    board.set(row, col, 0);
                 }
             }
         }
         return false;
     }
 
-    private static void fillFirstRow(SudokuBoard board) {
+    private static void fillFirstRow(final SudokuBoard board) {
         Random rand = new Random();
 
         List<Integer> list = new ArrayList();
@@ -99,7 +98,7 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
         }
         Collections.shuffle(list);
         for (int i = 0; i < BoardUtils.SIZE; i++) {
-            board.set(0,i,list.get(i) + 1);
+            board.set(0, i, list.get(i) + 1);
         }
     }
 }

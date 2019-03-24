@@ -34,7 +34,7 @@ public class BoardGeneratorTest {
     for (int z = 0; z < 3; z++) {
       for (int k = 0; k < 3; k++) {
         for (int i = k * 3; i < 3 * k + 3; i++) {
-          TreeSet<Integer> values = new TreeSet<Integer>();
+          TreeSet<Integer> values = new TreeSet<>();
           for (int j = z * 3; j < 3 * z + 3; j++) {
             System.out.print(sudokuBoard1.get(i, j));
 
@@ -56,7 +56,7 @@ public class BoardGeneratorTest {
   @Test
   public void checkrows() {
     for (int i = 0; i < 9; i++) {
-      TreeSet<Integer> values = new TreeSet<Integer>();
+      TreeSet<Integer> values = new TreeSet<>();
       for (int j = 0; j < 9; j++) {
         assertTrue(values.add(sudokuBoard1.get(i, j)));
         assertFalse(values.add(sudokuBoard1.get(i, j)));
@@ -67,7 +67,7 @@ public class BoardGeneratorTest {
   @Test
   public void checkColumns() {
     for (int i = 0; i < 9; i++) {
-      TreeSet<Integer> values = new TreeSet<Integer>();
+      TreeSet<Integer> values = new TreeSet<>();
       for (int j = 0; j < 9; j++) {
         assertTrue(values.add(sudokuBoard1.get(i, j)));
         assertFalse(values.add(sudokuBoard1.get(i, j)));
