@@ -25,6 +25,9 @@ public class SudokuBoard {
         return  this.board[y][x];
     }
 
+    public final boolean check() {
+        return true;
+    }
     @Override
     public final boolean equals(final Object o) {
         if (this == o) {

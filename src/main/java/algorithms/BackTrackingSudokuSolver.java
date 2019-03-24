@@ -6,7 +6,6 @@ import utils.BoardUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class BackTrackingSudokuSolver implements SudokuSolver {
     public final void solve(final SudokuBoard sudokuBoard) {
@@ -90,9 +89,7 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
     }
 
     private static void fillFirstRow(final SudokuBoard board) {
-        Random rand = new Random();
-
-        List<Integer> list = new ArrayList();
+        List<Integer> list = new ArrayList<>();
         for (int i = 0; i < BoardUtils.SIZE; i++) {
             list.add(i);
         }
