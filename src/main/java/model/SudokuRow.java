@@ -1,8 +1,7 @@
 package model;
 
-public class SudokuRow implements SudokuGroup {
-    @Override
-    public boolean verify() {
-        return false;
-    }
+public class SudokuRow extends SudokuGroupBase {
+  public SudokuRow(SudokuField[] sudokuField) {
+    super(sudokuField);
+  }
 }

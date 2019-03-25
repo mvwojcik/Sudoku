@@ -76,7 +76,7 @@ import static org.junit.jupiter.api.Assertions.*;
         @Test
         public void checkAll()
         {
-           assertTrue(this.sudokuBoard1.check());
+           assertTrue(this.sudokuBoard1.checkBoard());
         }
 
 

@@ -1,10 +1,8 @@
 package model;
 
-public class SudokuBox implements SudokuGroup{
+public class SudokuBox extends SudokuGroupBase {
 
-    @Override
-    public boolean verify() {
-        return false;
-    }
-
+  public SudokuBox(SudokuField[] sudokuField) {
+    super(sudokuField);
+  }
 }

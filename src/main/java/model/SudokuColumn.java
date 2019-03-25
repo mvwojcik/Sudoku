@@ -1,10 +1,10 @@
 package model;
 
 
-public class SudokuColumn implements SudokuGroup {
+public class SudokuColumn extends SudokuGroupBase {
     SudokuField sudokuFields[] = new SudokuField[9];
-    @Override
-    public boolean verify() {
-        return false;
+
+    public SudokuColumn(SudokuField[] sudokuField) {
+        super(sudokuField);
     }
 }
