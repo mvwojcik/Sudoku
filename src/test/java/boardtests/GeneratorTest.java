@@ -68,10 +68,15 @@ import static org.junit.jupiter.api.Assertions.*;
             for (int i = 0; i < 9; i++) {
                 TreeSet<Integer> values = new TreeSet<>();
                 for (int j = 0; j < 9; j++) {
-                    assertTrue(values.add(sudokuBoard1.get(i, j)));
-                    assertFalse(values.add(sudokuBoard1.get(i, j)));
+                    assertTrue(values.add(sudokuBoard1.get(j, i)));
+                    assertFalse(values.add(sudokuBoard1.get(j, i)));
                 }
             }
+        }
+        @Test
+        public void checkAll()
+        {
+           assertTrue(this.sudokuBoard1.check());
         }
 
 
