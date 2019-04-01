@@ -1,24 +1,27 @@
 package model;
 
-import java.util.Arrays;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SudokuGroupBase {
-  private SudokuField[] sudokuField;
+ // private SudokuField[] sudokuFields;
+  private final List<SudokuField> sudokuFieldList;
 
   public SudokuGroupBase(SudokuField [] sudokuField) {
-    this.sudokuField = new SudokuField[9];
+//    this.sudokuFields = new SudokuField[9];
+    this.sudokuFieldList = new ArrayList<>(9);
+    this.sudokuFieldList.addAll(Arrays.asList(sudokuField));
     for (int i = 0; i < 9; i++) {
-      this.sudokuField[i] = sudokuField[i];
+//     this.sudokuFields[i] = sudokuField[i];
+//      this.sudokuFieldList.set(i,sudokuField[i]);
     }
   }
 
   public boolean verify() {
 
-      Arrays.asList(this.sudokuField);
+//      Arrays.asList(this.sudokuFields);
 
       TreeSet<Integer> treeSet = new TreeSet<>();
-      for (SudokuField sudokuField:this.sudokuField)
+      for (SudokuField sudokuField:this.sudokuFieldList)
       {
           if(!treeSet.add(sudokuField.value))
               return false;

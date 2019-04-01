@@ -35,13 +35,13 @@ import static org.junit.jupiter.api.Assertions.*;
                     for (int i = k * 3; i < 3 * k + 3; i++) {
                         TreeSet<Integer> values = new TreeSet<>();
                         for (int j = z * 3; j < 3 * z + 3; j++) {
-                            System.out.print(sudokuBoard1.get(i, j));
+//                            System.out.print(sudokuBoard1.get(i, j));
 
                             assertTrue(values.add(sudokuBoard1.get(i, j)));
                         }
-                        System.out.println();
+//                        System.out.println();
                     }
-                    System.out.println("\n");
+//                    System.out.println("\n");
                 }
             }
         }

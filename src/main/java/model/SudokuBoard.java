@@ -2,12 +2,24 @@ package model;
 
 import utils.BoardUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SudokuBoard {
   private int[][] board;
+  private List<List<SudokuField>> boardAsList;
+
 
   public SudokuBoard() {
+    this.boardAsList= new ArrayList<>(9);
+    for (int i = 0; i < 9; i++) {
+      boardAsList.set(i, new ArrayList<>(9));
+      boardAsList.get(i).forEach(sudokuField -> sudokuField = new SudokuField());
+
+    }
+
+
     this.board = new int[BoardUtils.SIZE][BoardUtils.SIZE];
   }
 
@@ -17,6 +29,7 @@ public class SudokuBoard {
 
   public final int set(final int x, final int y, final int value) {
     this.board[y][x] = value;
+    this.boardAsList.get(y).set(x,new SudokuField(value));
     return value;
   }
 
@@ -67,7 +80,6 @@ public class SudokuBoard {
 
     for (int i = 0; i < BoardUtils.SIZE; i++) {
       {
-        System.out.println("pss");
         if (!this.getRow(i).verify() || !this.getColumn(i).verify()) {
           return false;
         }
@@ -94,6 +106,7 @@ public class SudokuBoard {
     SudokuBoard that = (SudokuBoard) o;
     return Arrays.equals(this.getBoard(), that.getBoard());
   }
+
 
   @Override
   public final int hashCode() {
