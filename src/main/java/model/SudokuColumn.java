@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
 
 public class SudokuColumn extends SudokuGroupBase {
-    SudokuField sudokuFields[] = new SudokuField[9];
+  public SudokuColumn() {
+    super();
+  }
 
-    public SudokuColumn(SudokuField[] sudokuField) {
-        super(sudokuField);
-    }
+  public SudokuColumn(final List<SudokuField> sudokuFieldList) {
+    super(sudokuFieldList);
+  }
 }

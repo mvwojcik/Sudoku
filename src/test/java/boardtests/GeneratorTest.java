@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
     @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
     public class GeneratorTest {
 
-        SudokuBoard sudokuBoard1;
-        SudokuBoard sudokuBoard2;
-        BackTrackingSudokuSolver sudokuBoard1Solver;
-        BackTrackingSudokuSolver sudokuBoard2Solver;
+        private SudokuBoard sudokuBoard1;
+        private SudokuBoard sudokuBoard2;
+        private BackTrackingSudokuSolver sudokuBoard1Solver;
+        private BackTrackingSudokuSolver sudokuBoard2Solver;
 
         @BeforeAll
         public void initBoards() {

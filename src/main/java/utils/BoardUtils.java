@@ -1,6 +1,9 @@
 package utils;
 
 import model.SudokuField;
+import model.SudokuInsideList;
+
+import java.util.List;
 
 public class BoardUtils {
     protected BoardUtils() {
@@ -36,5 +39,15 @@ public class BoardUtils {
             System.out.println();
         }
         System.out.println();
+    }
+
+    public static void printList(final List<SudokuInsideList> list) {
+    for (int i = 0; i < SIZE; i++) {
+      for (int j = 0; j < 9; j++) {
+        System.out.print(list.get(i).get(j));
+      }
+      System.out.println();
+    }
+    System.out.println();
     }
 }

@@ -3,5 +3,5 @@ package algorithms;
 import model.SudokuBoard;
 
 public interface SudokuSolver {
-    void solve(SudokuBoard sudokuBoard);
+  void solve(SudokuBoard sudokuBoard);
 }
