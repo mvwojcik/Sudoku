@@ -1,3 +1,6 @@
+/**
+ * Pakiet zawiera algorytmy rozwiązywania sudoku
+ */
 package algorithms;
 
 import model.SudokuBoard;
@@ -13,8 +16,8 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
     solveSudoku(sudokuBoard, BoardUtils.SIZE);
   }
 
-  private boolean isSafe(final SudokuBoard board
-          , final int row, final int col, final int num) {
+  private boolean isSafe(final SudokuBoard board,
+                         final int row, final int col, final int num) {
 
     // Sprawdzamy czy ta liczba jest unikalna w wierszu
     for (int d = 0; d < BoardUtils.SIZE; d++) {

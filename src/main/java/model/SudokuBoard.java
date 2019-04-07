@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class SudokuBoard {
 
-  public List<SudokuInsideList> boardAsList;
+  private List<SudokuInsideList> boardAsList;
 
   public SudokuBoard() {
     this.boardAsList =
@@ -20,12 +20,11 @@ public class SudokuBoard {
     }
   }
 
-  public List<SudokuInsideList> getBoardAsList() {
+  public final List<SudokuInsideList> getBoardAsList() {
     return boardAsList;
   }
 
-  public final int set
-          (final int x, final int y, final int value) {
+  public final int set(final int x, final int y, final int value) {
     return this.boardAsList.get(y).set(x, value);
   }
 
@@ -38,14 +37,15 @@ public class SudokuBoard {
 
   public final SudokuColumn getColumn(final Integer y) {
     BoardUtils.check9arg(y);
-    List<SudokuField> sudokuFields = Arrays.asList(new SudokuField[9]);
+    List<SudokuField> sudokuFields =
+            Arrays.asList(new SudokuField[BoardUtils.SIZE]);
     for (int i = 0; i < BoardUtils.SIZE; i++) {
       sudokuFields.set(
           i, new SudokuField(this.boardAsList
                       .get(i)
                       .getSudokuFieldList()
                       .get(y)
-                      .value));
+                      .getFieldValue()));
     }
 
     return new SudokuColumn(sudokuFields);
@@ -66,7 +66,8 @@ public class SudokuBoard {
   public final SudokuBox getBox(final int x, final int y) {
     BoardUtils.check3x3arg(x, y);
 
-    List<SudokuField> sudokuFields = Arrays.asList(new SudokuField[9]);
+    List<SudokuField> sudokuFields =
+            Arrays.asList(new SudokuField[BoardUtils.SIZE]);
 
     int z = 0;
     for (int i = x; i < x + BoardUtils.BOXSIZE; i++) {
@@ -83,12 +84,10 @@ public class SudokuBoard {
 
   public final boolean checkBoard() {
     for (int i = 0; i < BoardUtils.SIZE; i++) {
-      {
         if (!this.getRow(i).verify() || !this.getColumn(i).verify()) {
           System.out.println("ERR HERE");
           return false;
         }
-      }
     }
     for (int i = 0; i < BoardUtils.SIZE; i += BoardUtils.BOXSIZE) {
       for (int j = 0; j < BoardUtils.SIZE; j += BoardUtils.BOXSIZE) {
@@ -102,15 +101,19 @@ public class SudokuBoard {
   }
 
   @Override
-  public boolean equals(final Object o) {
-    if (this == o) return true;
-    if (!(o instanceof SudokuBoard)) return false;
+  public final boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SudokuBoard)) {
+      return false;
+    }
     SudokuBoard that = (SudokuBoard) o;
     return getBoardAsList().equals(that.getBoardAsList());
   }
 
   @Override
-  public int hashCode() {
+  public final int hashCode() {
     return Objects.hash(getBoardAsList());
   }
 }

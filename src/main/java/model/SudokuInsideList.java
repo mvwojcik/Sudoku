@@ -6,18 +6,18 @@ public class SudokuInsideList extends SudokuGroupBase {
   }
 
   public final int set(final int x, final Integer value) {
-    this.sudokuFieldList.get(x).setFieldValue(value);
+    this.getSudokuFieldList().get(x).setFieldValue(value);
     return value;
   }
 
   public final int get(final int x) {
-    return this.sudokuFieldList.get(x).getFieldValue();
+    return this.getSudokuFieldList().get(x).getFieldValue();
   }
 
   @Override
   public final String toString() {
     String x = "Sudoku Fields: ";
-    for (SudokuField sudokuField : this.sudokuFieldList) {
+    for (SudokuField sudokuField : this.getSudokuFieldList()) {
       x += (sudokuField.getFieldValue() + " ");
     }
 
