@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Objects;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
 
 public class SudokuField {
   private Integer value;
@@ -30,11 +31,16 @@ public class SudokuField {
       return false;
     }
     SudokuField that = (SudokuField) o;
-    return value.equals(that.value);
+    return Objects.equal(that.value, this.value);
   }
 
   @Override
   public final int hashCode() {
-    return Objects.hash(value);
+    return Objects.hashCode(value);
+  }
+
+  @Override
+  public final String toString(){
+    return MoreObjects.toStringHelper(this).add("val",value).toString();
   }
 }

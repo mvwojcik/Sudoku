@@ -1,5 +1,6 @@
 package model;
 
+import com.google.common.base.MoreObjects;
 import utils.BoardUtils;
 
 import java.util.Arrays;
@@ -55,5 +56,9 @@ public class SudokuGroupBase {
     }
 
     return true;
+  }
+
+  public final String toString(){
+   return MoreObjects.toStringHelper(this).add("SudokuFieldList", sudokuFieldList).toString();
   }
 }

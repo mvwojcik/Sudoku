@@ -1,5 +1,7 @@
 package model;
 
+import com.google.common.base.MoreObjects;
+
 public class SudokuInsideList extends SudokuGroupBase {
   public SudokuInsideList() {
     super();
@@ -12,15 +14,5 @@ public class SudokuInsideList extends SudokuGroupBase {
 
   public final int get(final int x) {
     return this.getSudokuFieldList().get(x).getFieldValue();
-  }
-
-  @Override
-  public final String toString() {
-    String x = "Sudoku Fields: ";
-    for (SudokuField sudokuField : this.getSudokuFieldList()) {
-      x += (sudokuField.getFieldValue() + " ");
-    }
-
-    return "SudokuInsideList{" + "sudokuFieldList=" + x + '}';
   }
 }

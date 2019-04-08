@@ -1,12 +1,13 @@
 package model;
 
+import com.google.common.base.MoreObjects;
 import utils.BoardUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
+import com.google.common.base.Objects;
 
 public class SudokuBoard {
 
@@ -100,6 +101,7 @@ public class SudokuBoard {
     return true;
   }
 
+  //W sumie tak jak wcześniej bylo lepiej bo te metody są depracated ale trza było zmienić
   @Override
   public final boolean equals(final Object o) {
     if (this == o) {
@@ -109,11 +111,15 @@ public class SudokuBoard {
       return false;
     }
     SudokuBoard that = (SudokuBoard) o;
-    return getBoardAsList().equals(that.getBoardAsList());
+    return Objects.equal(getBoardAsList(),that.getBoardAsList());
   }
 
   @Override
   public final int hashCode() {
-    return Objects.hash(getBoardAsList());
+    return Objects.hashCode(getBoardAsList());
+  }
+
+  public final String toString(){
+    return MoreObjects.toStringHelper(this).add("BoardList",boardAsList).toString();
   }
 }
