@@ -41,6 +41,6 @@ public class SudokuField {
 
   @Override
   public final String toString(){
-    return MoreObjects.toStringHelper(this).add("val",value).toString();
+    return MoreObjects.toStringHelper(this).add("val: ",value).toString();
   }
 }

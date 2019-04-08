@@ -1,12 +1,12 @@
 package model;
 
-import com.google.common.base.MoreObjects;
 import utils.BoardUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
 public class SudokuBoard {
