@@ -40,4 +40,30 @@ public class SudokuGroupBaseTest {
 
     }
 
+    @Test
+    public void checkEquals() {
+
+        SudokuField sudokuField = new SudokuField(2);
+        SudokuField sudokuField1 = new SudokuField(2);
+        assertEquals(sudokuField,sudokuField1);
+        assertTrue(sudokuField.equals(sudokuField1));
+        assertFalse(sudokuField==sudokuField1);
+
+        SudokuField sudokuField2 = new SudokuField();
+        SudokuField sudokuField3 = new SudokuField();
+        assertEquals(sudokuField2,sudokuField3);
+        assertTrue(sudokuField2.equals(sudokuField3));
+        assertFalse(sudokuField2==sudokuField3);
+
+
+    }
+
+    @Test
+    public void checkListEquals() {
+
+
+
+
+    }
+
 }
