@@ -1,4 +1,4 @@
-package boardtests;
+package java.boardtests;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
@@ -9,7 +9,6 @@ import persistence.dao.SudokuBoardDaoFactory;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DaoTest {

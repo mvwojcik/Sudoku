@@ -1,4 +1,4 @@
-package boardtests;
+package java.boardtests;
 
 import model.SudokuBoard;
 import org.junit.jupiter.api.Test;

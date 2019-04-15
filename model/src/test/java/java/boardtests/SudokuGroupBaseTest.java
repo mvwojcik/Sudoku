@@ -1,9 +1,11 @@
-package boardtests;
+package java.boardtests;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
-import model.*;
-import org.junit.jupiter.api.BeforeAll;
+import model.SudokuBoard;
+import model.SudokuColumn;
+import model.SudokuField;
+import model.SudokuInsideList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
