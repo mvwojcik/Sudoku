@@ -1,6 +1,7 @@
 
 * {
-    -fx-primary : #192231;
+    -fx-primary : #192231 ;
+    -fx-primary-hover : #212b31;
     -fx-primary-text : #B2B2B2;
     -fx-primary-hover : #293c57;
 
@@ -20,6 +21,10 @@
     -fx-opacity: 0.4;
     -fx-border-color: black;
     -fx-border-width: 4;
+}
+.button:hover
+{
+    -fx-background-color: -fx-primary-hover;
 }
 
 .text-field

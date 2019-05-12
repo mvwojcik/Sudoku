@@ -5,6 +5,7 @@ import utils.BoardUtils;
 
 import java.io.*;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
@@ -61,6 +62,7 @@ return sudokuBoard;
             reader.close();
         } catch (IOException e) {
         }
+
     }
 
     public void finalize() {
