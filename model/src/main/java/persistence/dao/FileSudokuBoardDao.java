@@ -52,6 +52,10 @@ return sudokuBoard;
         }
     }
 
+    public void read1(SudokuBoard sudokuBoard) throws IOException {
+       // ObjectInputStream objectInputStream = null
+    }
+
     @Override
     public void close() throws Exception {
         try {

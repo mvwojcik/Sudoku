@@ -3,7 +3,9 @@ package model;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
-public class SudokuField {
+import java.io.Serializable;
+
+public class SudokuField implements Cloneable, Serializable,Comparable<SudokuField> {
   private Integer value;
 
   public SudokuField() {
@@ -42,5 +44,10 @@ public class SudokuField {
   @Override
   public final String toString(){
     return MoreObjects.toStringHelper(this).add("val: ",value).toString();
+  }
+
+  @Override
+  public int compareTo(SudokuField o) {
+    return Integer.compare(this.value,o.getFieldValue());
   }
 }

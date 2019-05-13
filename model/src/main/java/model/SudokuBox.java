@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SudokuBox extends SudokuGroupBase {
+public class SudokuBox extends SudokuGroupBase implements Cloneable, Serializable {
 
   public SudokuBox() {
     super();
