@@ -15,8 +15,7 @@ public class SudokuBoard implements Cloneable, Serializable {
   private List<SudokuInsideList> boardAsList;
 
   public SudokuBoard() {
-    this.boardAsList =
-            Arrays.asList(new SudokuInsideList[BoardUtils.SIZE]);
+    this.boardAsList = Arrays.asList(new SudokuInsideList[BoardUtils.SIZE]);
     for (int i = 0; i < BoardUtils.SIZE; i++) {
       this.boardAsList.set(i, new SudokuInsideList());
     }
@@ -39,15 +38,10 @@ public class SudokuBoard implements Cloneable, Serializable {
 
   public final SudokuColumn getColumn(final Integer y) {
     BoardUtils.check9arg(y);
-    List<SudokuField> sudokuFields =
-            Arrays.asList(new SudokuField[BoardUtils.SIZE]);
+    List<SudokuField> sudokuFields = Arrays.asList(new SudokuField[BoardUtils.SIZE]);
     for (int i = 0; i < BoardUtils.SIZE; i++) {
       sudokuFields.set(
-          i, new SudokuField(this.boardAsList
-                      .get(i)
-                      .getSudokuFieldList()
-                      .get(y)
-                      .getFieldValue()));
+          i, new SudokuField(this.boardAsList.get(i).getSudokuFieldList().get(y).getFieldValue()));
     }
 
     return new SudokuColumn(sudokuFields);
@@ -56,10 +50,7 @@ public class SudokuBoard implements Cloneable, Serializable {
   public final SudokuRow getRow(final Integer x) {
     BoardUtils.check9arg(x);
 
-    List<SudokuField> sudokuFields =
-            new ArrayList<>(this.boardAsList
-                    .get(x)
-                    .getSudokuFieldList());
+    List<SudokuField> sudokuFields = new ArrayList<>(this.boardAsList.get(x).getSudokuFieldList());
 
     return new SudokuRow(sudokuFields);
   }
@@ -68,8 +59,7 @@ public class SudokuBoard implements Cloneable, Serializable {
   public final SudokuBox getBox(final int x, final int y) {
     BoardUtils.check3x3arg(x, y);
 
-    List<SudokuField> sudokuFields =
-            Arrays.asList(new SudokuField[BoardUtils.SIZE]);
+    List<SudokuField> sudokuFields = Arrays.asList(new SudokuField[BoardUtils.SIZE]);
 
     int z = 0;
     for (int i = x; i < x + BoardUtils.BOXSIZE; i++) {
@@ -86,10 +76,10 @@ public class SudokuBoard implements Cloneable, Serializable {
 
   public final boolean checkBoard() {
     for (int i = 0; i < BoardUtils.SIZE; i++) {
-        if (!this.getRow(i).verify() || !this.getColumn(i).verify()) {
-          System.out.println("ERR HERE");
-          return false;
-        }
+      if (!this.getRow(i).verify() || !this.getColumn(i).verify()) {
+        System.out.println("ERR HERE");
+        return false;
+      }
     }
     for (int i = 0; i < BoardUtils.SIZE; i += BoardUtils.BOXSIZE) {
       for (int j = 0; j < BoardUtils.SIZE; j += BoardUtils.BOXSIZE) {
@@ -102,7 +92,7 @@ public class SudokuBoard implements Cloneable, Serializable {
     return true;
   }
 
-  //W sumie tak jak wcześniej bylo lepiej bo te metody są depracated ale trza było zmienić
+  // W sumie tak jak wcześniej bylo lepiej bo te metody są depracated ale trza było zmienić
   @Override
   public final boolean equals(final Object o) {
     if (this == o) {
@@ -112,7 +102,7 @@ public class SudokuBoard implements Cloneable, Serializable {
       return false;
     }
     SudokuBoard that = (SudokuBoard) o;
-    return Objects.equal(getBoardAsList(),that.getBoardAsList());
+    return Objects.equal(getBoardAsList(), that.getBoardAsList());
   }
 
   @Override
@@ -120,7 +110,16 @@ public class SudokuBoard implements Cloneable, Serializable {
     return Objects.hashCode(getBoardAsList());
   }
 
-  public final String toString(){
-    return MoreObjects.toStringHelper(this).add("BoardList",boardAsList).toString();
+  public final String toString() {
+    return MoreObjects.toStringHelper(this).add("BoardList", boardAsList).toString();
+  }
+
+  @Override
+  public SudokuBoard clone() {
+    try {
+      return (SudokuBoard) super.clone();
+    } catch (CloneNotSupportedException e) {
+      throw new AssertionError();
+    }
   }
 }

@@ -3,58 +3,74 @@ package controllers;
 import algorithms.BackTrackingSudokuSolver;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import model.Level;
 import model.SudokuBoard;
 
 public class SudokuBoardController {
 
-    Button prevButton;
-    TextField textField;
-    TextField previousTextField;
-    SudokuBoard sudokuBoard;
-    private BackTrackingSudokuSolver sudokuBoard1Solver;
+  private SudokuBoard sudokuBoard;
+  private static Level level;
 
+  @FXML private GridPane gridPane;
 
-    @FXML
-    private GridPane gridPane;
+  @FXML
+  private void initialize() {
+    BackTrackingSudokuSolver sudokuBoard1Solver = new BackTrackingSudokuSolver();
+    sudokuBoard = new SudokuBoard();
+    sudokuBoard1Solver.solve(sudokuBoard);
+    sudokuBoard = level.handleLevel(sudokuBoard);
+    for (int i = 0; i < 9; i++) {
+      for (int j = 0; j < 9; j++) {
+        this.gridPane.add(createButton(sudokuBoard.get(i, j)), i, j);
+      }
+    }
+  }
 
-    @FXML
-    private void initialize() {
-        sudokuBoard1Solver = new BackTrackingSudokuSolver();
-        sudokuBoard = new SudokuBoard();
-        sudokuBoard1Solver.solve(sudokuBoard);
-        for (int i = 0; i < 9 ; i++) {
-            for (int j = 0; j <9 ; j++) {
+  @FXML
+  void clickOnAction(ActionEvent event) {
 
-            }
+    System.out.println("bum");
+  }
 
-        }
+  private boolean validate(String jazda) {
+
+    if (jazda.matches("[1-9]")) {
+      return true;
+    }
+    return false;
+  }
+
+  private TextField createButton(int value) {
+    TextField textField = new TextField();
+    if (value != 0) {
+      textField.setText(String.valueOf(value));
+      textField.setDisable(true);
+      textField.setPrefWidth(120);
+      textField.setPrefHeight(73);
+      textField.setAlignment(Pos.CENTER);
+    } else {
+      textField.setText("");
+
+      textField.setPrefWidth(120);
+      textField.setPrefHeight(73);
+      textField.setAlignment(Pos.CENTER);
     }
 
-    @FXML
-    void clickOnAction(ActionEvent event) {
-        if (previousTextField != null && !validate(previousTextField.getText())) {
-            previousTextField.setText("");
-        }
-        if (prevButton != null) {
-            prevButton.setText(textField.getText());
-            prevButton.setGraphic(null);
-        }
-        textField = new TextField();
-        ((Button) (event.getSource())).setGraphic(textField);
-        ((Button) (event.getSource())).setText(textField.getText());
-        prevButton = ((Button) (event.getSource()));
-        previousTextField = textField;
-    }
+    textField
+        .textProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              if (!validate(newValue) && !newValue.equals("")) {
+                textField.setText(oldValue);
+              }
+            });
+    return textField;
+  }
 
-
-    private boolean validate(String jazda) {
-
-        if (jazda.matches("[1-9]")) {
-            return true;
-        }
-        return false;
-    }
+  public static void setLevel(Level level) {
+    SudokuBoardController.level = level;
+  }
 }

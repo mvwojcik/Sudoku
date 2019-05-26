@@ -1,20 +1,20 @@
 
 * {
-    -fx-primary : #192231 ;
-    -fx-primary-hover : #212b31;
-    -fx-primary-text : #B2B2B2;
-    -fx-primary-hover : #293c57;
-
+    -fx-primary: #192231;
+    -fx-primary-hover: #212b31;
+    -fx-primary-text: #B2B2B2;
+    -fx-primary-hover: #293c57;
+    -fx-secondary: #413043;
 
 
 }
-.root
-{
-    -fx-background-color: linear-gradient(to bottom, rgba(123, 84, 105, 0.53), rgba(23, 15, 77, 0.72));
+
+.root {
+    /*-fx-background-color: linear-gradient(to bottom, rgba(123, 84, 105, 0.53), rgba(23, 15, 77, 0.72));*/
+    -fx-background-color: linear-gradient(to bottom, rgba(176, 168, 156, 0.53), rgba(195, 186, 172, 0.72));
 }
 
-.button
-{
+.button {
     -fx-background-color: -fx-primary;
     -fx-text-fill: -fx-primary-text;
     -fx-font-size: 20pt;
@@ -22,21 +22,50 @@
     -fx-border-color: black;
     -fx-border-width: 4;
 }
-.button:hover
-{
+
+.button:hover {
     -fx-background-color: -fx-primary-hover;
 }
 
-.text-field
-{
+.text-field {
     -fx-background-color: transparent;
-    -fx-text-fill: -fx-primary-text;
     -fx-font-size: 20pt;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-text-fill: -fx-secondary;
+    -fx-text-alignment: center ;
+}
+.text-field:disabled
+{
+    -fx-padding: 10px;
+
+    -fx-font-size: 20pt;
+    -fx-border-width: 2;
+    -fx-border-color: black;
+    -fx-text-fill: -fx-secondary;
+    -fx-text-alignment: center ;
+
 }
 
-.grid-pane
+.text-field:hover
 {
+    -fx-padding: 10px;
+
+    -fx-font-size: 30pt;
+    -fx-border-width: 3;
+    -fx-border-color: black;
+    -fx-text-fill: -fx-secondary;
+    -fx-text-alignment: center ;
+
+}
+
+
+
+
+.grid-pane {
     -fx-background-color: white;
     -fx-opacity: 0.5;
 
 }
+
+
