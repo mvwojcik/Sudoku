@@ -1,4 +1,4 @@
-package java.boardtests;
+package model;
 
 import algorithms.BackTrackingSudokuSolver;
 import model.SudokuBoard;

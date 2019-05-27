@@ -1,4 +1,4 @@
-package java.boardtests;
+package model;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
@@ -24,9 +24,7 @@ public class SudokuGroupBaseTest {
     @Test
     public void checkBoard() {
         SudokuBoard sudokuBoard = new SudokuBoard();
-        assertEquals(sudokuBoard.getBoardAsList().size(),9);
-        assertThrows(UnsupportedOperationException.class,() ->sudokuBoard.getBoardAsList().add(new SudokuInsideList()));
-        assertDoesNotThrow(()-> sudokuBoard.getBoardAsList().set(5,new SudokuInsideList()));
+
 
     }
     @Test
@@ -34,9 +32,6 @@ public class SudokuGroupBaseTest {
             SudokuBoard sudokuBoard1 = new SudokuBoard();
              SudokuSolver sudokuBoard1Solver = new BackTrackingSudokuSolver();
             sudokuBoard1Solver.solve(sudokuBoard1);
-           for (int i=0; i<9; i++ ) {
-      System.out.println(sudokuBoard1.getBoardAsList().get(i));
-            }
             assertEquals(1,1);
 
 

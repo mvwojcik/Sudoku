@@ -5,49 +5,49 @@ import com.google.common.base.Objects;
 
 import java.io.Serializable;
 
-public class SudokuField implements Cloneable, Serializable,Comparable<SudokuField> {
-  private Integer value;
+public class SudokuField implements Cloneable, Serializable, Comparable<SudokuField> {
+    private Integer value;
 
-  public SudokuField() {
-    this.value = new Integer(0);
-  }
-
-  public SudokuField(final Integer valueOfField) {
-    this.value = valueOfField;
-  }
-
-  public final Integer getFieldValue() {
-    return value;
-  }
-
-  public final void setFieldValue(final Integer valueOfField) {
-    this.value = valueOfField;
-  }
-
-  @Override
-  public final boolean equals(final Object o) {
-    if (this == o) {
-      return true;
+    public SudokuField() {
+        this.value = new Integer(0);
     }
-    if (!(o instanceof SudokuField)) {
-      return false;
+
+    public SudokuField(final Integer valueOfField) {
+        this.value = valueOfField;
     }
-    SudokuField that = (SudokuField) o;
-    return Objects.equal(that.value, this.value);
-  }
 
-  @Override
-  public final int hashCode() {
-    return Objects.hashCode(value);
-  }
+    public final Integer getFieldValue() {
+        return value;
+    }
 
-  @Override
-  public final String toString(){
-    return MoreObjects.toStringHelper(this).add("val: ",value).toString();
-  }
+    public final void setFieldValue(final Integer valueOfField) {
+        this.value = valueOfField;
+    }
 
-  @Override
-  public int compareTo(SudokuField o) {
-    return Integer.compare(this.value,o.getFieldValue());
-  }
+    @Override
+    public final boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SudokuField)) {
+            return false;
+        }
+        SudokuField that = (SudokuField) o;
+        return Objects.equal(that.value, this.value);
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hashCode(value);
+    }
+
+    @Override
+    public final String toString() {
+        return MoreObjects.toStringHelper(this).add("val: ", value).toString();
+    }
+
+    @Override
+    public int compareTo(SudokuField o) {
+        return Integer.compare(this.value, o.getFieldValue());
+    }
 }

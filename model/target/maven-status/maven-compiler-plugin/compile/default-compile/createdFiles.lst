@@ -1,0 +1,14 @@
+utils\BoardUtils.class
+persistence\dao\FileSudokuBoardDao.class
+model\SudokuInsideList.class
+model\SudokuRow.class
+model\SudokuColumn.class
+model\SudokuBoard.class
+algorithms\SudokuSolver.class
+algorithms\BackTrackingSudokuSolver.class
+model\SudokuField.class
+persistence\dao\SudokuBoardDaoFactory.class
+model\SudokuBox.class
+model\SudokuGroupBase.class
+persistence\saf.class
+persistence\dao\Dao.class

@@ -38,7 +38,7 @@ public class FXMLManager {
 
   public void setStage(Stage stage, String path) throws IOException {
     stage.setScene(changeScene(path));
-    stage.setTitle("TicTacToe");
+    stage.setTitle("Sudoku");
     stage.show();
   }
 

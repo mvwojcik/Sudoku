@@ -1,0 +1,5 @@
+model\GeneratorTest.class
+model\SudokuFieldTest.class
+model\SudokuGroupBaseTest.class
+model\DaoTest.class
+model\BoardTest.class

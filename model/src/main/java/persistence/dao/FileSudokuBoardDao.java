@@ -11,6 +11,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     File file;
     BufferedReader reader;
     BufferedWriter writer;
+
     public FileSudokuBoardDao(String path) {
         this.file = new File(path);
         Paths.get(path);
@@ -18,7 +19,9 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
     @Override
     public SudokuBoard read() throws IOException {
-        reader = new BufferedReader(new FileReader(file));
+        if (reader == null) {
+            reader = new BufferedReader(new FileReader(file));
+        }
         SudokuBoard sudokuBoard = new SudokuBoard();
 
         for (int i = 0; i < BoardUtils.SIZE; i++) {
@@ -31,7 +34,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             }
             reader.readLine();
         }
-return sudokuBoard;
+        return sudokuBoard;
     }
 
     @Override
@@ -52,7 +55,7 @@ return sudokuBoard;
     }
 
     public void read1(SudokuBoard sudokuBoard) throws IOException {
-       // ObjectInputStream objectInputStream = null
+        // ObjectInputStream objectInputStream = null
     }
 
     @Override
@@ -64,6 +67,7 @@ return sudokuBoard;
         try {
             reader.close();
         } catch (IOException e) {
+
         }
 
     }

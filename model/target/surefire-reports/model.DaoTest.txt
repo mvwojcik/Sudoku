@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: model.DaoTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.047 s <<< FAILURE! - in model.DaoTest
+init  Time elapsed: 0.047 s  <<< ERROR!
+java.lang.NullPointerException
+	at model.DaoTest.init(DaoTest.java:28)
+

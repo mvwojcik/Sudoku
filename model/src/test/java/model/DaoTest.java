@@ -1,4 +1,4 @@
-package java.boardtests;
+package model;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
@@ -14,33 +14,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DaoTest {
 
     @Test
-    public void init() {
+    public void init() throws Exception {
         SudokuBoard sudokuBoard = new SudokuBoard();
         SudokuSolver sudokuSolver = new BackTrackingSudokuSolver();
         sudokuSolver.solve(sudokuBoard);
 
 
-
-        try (Dao dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")){
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")) {
 
             dao.write(sudokuBoard);
 
-        } catch(IOException e){
-        //    System.out.println(e.getMessage());
-        }
-        catch (Exception e) {
-        //    System.out.println(e.getMessage());
         }
 
-        try (Dao dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")){
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")) {
 
-            sudokuBoard = (SudokuBoard)dao.read();
+            sudokuBoard = dao.read();
 
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
         }
 
         assertTrue(sudokuBoard.checkBoard());

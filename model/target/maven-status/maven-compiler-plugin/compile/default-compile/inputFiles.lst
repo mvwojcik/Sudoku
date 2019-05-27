@@ -1,0 +1,14 @@
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuInsideList.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuRow.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\utils\BoardUtils.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\algorithms\SudokuSolver.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\persistence\dao\Dao.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuField.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\algorithms\BackTrackingSudokuSolver.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\persistence\dao\FileSudokuBoardDao.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\persistence\saf.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuColumn.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuBoard.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\persistence\dao\SudokuBoardDaoFactory.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuBox.java
+C:\Users\student\IdeaProjects\sudoku\model\src\main\java\model\SudokuGroupBase.java
