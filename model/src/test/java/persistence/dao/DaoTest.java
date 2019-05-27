@@ -1,4 +1,4 @@
-package model;
+package persistence.dao;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;

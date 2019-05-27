@@ -38,9 +38,9 @@ public class SudokuBoardController {
         System.out.println("bum");
     }
 
-    private boolean validate(String jazda) {
+    private boolean validate(String value) {
 
-        if (jazda.matches("[1-9]")) {
+        if (value.matches("[1-9]")) {
             return true;
         }
         return false;

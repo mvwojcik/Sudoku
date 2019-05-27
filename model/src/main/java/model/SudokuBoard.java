@@ -5,6 +5,7 @@ import utils.BoardUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.base.MoreObjects;
@@ -21,6 +22,9 @@ public class SudokuBoard implements Cloneable, Serializable {
         }
     }
 
+    public SudokuBoard(List<SudokuInsideList> boardAsList) {
+        this.boardAsList = boardAsList;
+    }
 
     public final int set(final int x, final int y, final int value) {
         return this.boardAsList.get(y).set(x, value);
@@ -114,11 +118,15 @@ public class SudokuBoard implements Cloneable, Serializable {
 
     @Override
     public SudokuBoard clone() {
-        try {
-            //do zm
-            return (SudokuBoard) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+        List<SudokuInsideList> board = new ArrayList<>();
+
+        for (int i = 0; i < 9; i++) {
+            SudokuInsideList board2 = new SudokuInsideList();
+            for (int j = 0; j < 9; j++) {
+                board2.set(j, this.boardAsList.get(i).get(j));
+            }
+            board.set(i, board2);
         }
+        return new SudokuBoard(board);
     }
 }
