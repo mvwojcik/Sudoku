@@ -13,7 +13,7 @@ public class SudokuBoardController {
 
   private SudokuBoard sudokuBoard;
   private static Level level;
-
+  private SudokuBoard sudokuBoard2;
   @FXML private GridPane gridPane;
 
   @FXML
@@ -22,9 +22,11 @@ public class SudokuBoardController {
     sudokuBoard = new SudokuBoard();
     sudokuBoard1Solver.solve(sudokuBoard);
     sudokuBoard = level.handleLevel(sudokuBoard);
+    sudokuBoard2 = sudokuBoard.clone();
+
     for (int i = 0; i < 9; i++) {
       for (int j = 0; j < 9; j++) {
-        this.gridPane.add(createButton(sudokuBoard.get(i, j)), i, j);
+        this.gridPane.add(createButton(sudokuBoard2.get(i, j)), i, j);
       }
     }
   }
