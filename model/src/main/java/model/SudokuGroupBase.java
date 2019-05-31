@@ -2,13 +2,14 @@ package model;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
-import utils.BoardUtils;
+import pl.mwkc.utils.BoardUtils;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
-public class SudokuGroupBase {
+public class SudokuGroupBase implements Serializable {
     private List<SudokuField> sudokuFieldList;
 
     public SudokuGroupBase() {

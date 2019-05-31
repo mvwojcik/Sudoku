@@ -1,3 +1,5 @@
 .idea/*
 target/*
+model/target/*
+view/target/*
 *.iml

@@ -1,24 +1,25 @@
 package persistence.dao;
 
 import model.SudokuBoard;
-import utils.BoardUtils;
+import pl.mwkc.utils.BoardUtils;
 
 import java.io.*;
 import java.nio.file.Paths;
 
 public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
-    File file;
-    BufferedReader reader;
-    BufferedWriter writer;
+    private File file;
+    private BufferedReader reader;
+    private BufferedWriter writer;
+    ObjectInputStream reader2;
+    ObjectOutputStream writer2;
 
     public FileSudokuBoardDao(String path) {
         this.file = new File(path);
         Paths.get(path);
     }
 
-    @Override
-    public SudokuBoard read() throws IOException {
+    public SudokuBoard read2() throws IOException {
         if (reader == null) {
             reader = new BufferedReader(new FileReader(file));
         }
@@ -37,8 +38,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         return sudokuBoard;
     }
 
-    @Override
-    public void write(SudokuBoard sudokuBoard) throws IOException {
+    public void write2(SudokuBoard sudokuBoard) throws IOException {
         writer = new BufferedWriter(new FileWriter(file));
 
         for (int i = 0; i < BoardUtils.SIZE; i++) {
@@ -54,20 +54,28 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         }
     }
 
-    public void read1(SudokuBoard sudokuBoard) throws IOException {
-        // ObjectInputStream objectInputStream = null
+    public void write(SudokuBoard sudokuBoard) throws IOException {
+        writer2 = new ObjectOutputStream(new FileOutputStream(file));
+        writer2.writeObject(sudokuBoard);
+        System.out.println(sudokuBoard.hashCode());
+    }
+
+    public SudokuBoard read() throws IOException, ClassNotFoundException {
+        reader2 = new ObjectInputStream(new FileInputStream(file));
+        SudokuBoard sudokuBoard = (SudokuBoard)reader2.readObject();
+        System.out.println(sudokuBoard.hashCode());
+        return sudokuBoard;
     }
 
     @Override
     public void close() throws Exception {
-        try {
-            writer.close();
-        } catch (IOException e) {
-        }
-        try {
-            reader.close();
-        } catch (IOException e) {
 
+        if (this.reader != null)
+        {
+            reader.close();
+        }
+        else if(this.writer != null) {
+            writer.close();
         }
 
     }

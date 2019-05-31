@@ -1,6 +1,7 @@
 package model;
 
 
+
 public class SudokuInsideList extends SudokuGroupBase {
   public SudokuInsideList() {
     super();

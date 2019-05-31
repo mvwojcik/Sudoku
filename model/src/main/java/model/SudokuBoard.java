@@ -1,15 +1,13 @@
 package model;
 
-import utils.BoardUtils;
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import pl.mwkc.utils.BoardUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.base.Objects;
 
 public class SudokuBoard implements Cloneable, Serializable {
 
@@ -118,14 +116,15 @@ public class SudokuBoard implements Cloneable, Serializable {
 
     @Override
     public SudokuBoard clone() {
-        List<SudokuInsideList> board = new ArrayList<>();
+        List<SudokuInsideList> board = new ArrayList<>(9);
 
         for (int i = 0; i < 9; i++) {
             SudokuInsideList board2 = new SudokuInsideList();
             for (int j = 0; j < 9; j++) {
-                board2.set(j, this.boardAsList.get(i).get(j));
+                board2.set(j,
+                        this.boardAsList.get(i).get(j));
             }
-            board.set(i, board2);
+            board.add(board2);
         }
         return new SudokuBoard(board);
     }

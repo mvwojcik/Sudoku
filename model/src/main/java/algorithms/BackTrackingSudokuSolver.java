@@ -4,7 +4,7 @@
 package algorithms;
 
 import model.SudokuBoard;
-import utils.BoardUtils;
+import pl.mwkc.utils.BoardUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

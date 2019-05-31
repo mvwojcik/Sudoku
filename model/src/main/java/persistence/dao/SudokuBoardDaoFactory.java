@@ -8,4 +8,8 @@ public class SudokuBoardDaoFactory {
 
         return new FileSudokuBoardDao(fileName);
     }
+
+    public static<T> Dao<T> getLevelDao(String filename) {
+        return new FileLevelDao<T>(filename);
+    }
 }

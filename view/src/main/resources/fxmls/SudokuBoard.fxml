@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../stylesheets/SudokuBoardStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SudokuBoardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../stylesheets/SudokuBoardStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mwkc.controllers.SudokuBoardController">
    <top>
       <HBox prefHeight="66.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="249.0" text="%game.check" />
-            <Label alignment="CENTER" prefHeight="66.0" prefWidth="608.0" text="%game.sudoku" />
-            <Button mnemonicParsing="false" prefHeight="65.0" prefWidth="279.0" text="%game.save" />
+            <Button mnemonicParsing="false" onAction="#check" prefHeight="65.0" prefWidth="249.0" text="%game.check" />
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="431.0" text="%game.sudoku" />
+            <Button mnemonicParsing="false" onAction="#load" text="%game.load" />
+            <Button mnemonicParsing="false" onAction="#save" prefHeight="65.0" prefWidth="279.0" text="%game.save" />
          </children>
       </HBox>
    </top>
