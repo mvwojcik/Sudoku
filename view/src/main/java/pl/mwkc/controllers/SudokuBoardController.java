@@ -6,9 +6,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import model.SudokuBoard;
-import pl.mwkc.modelfx.Level;
 import persistence.dao.Dao;
 import persistence.dao.SudokuBoardDaoFactory;
+import pl.mwkc.modelfx.Level;
 
 public class SudokuBoardController {
 
@@ -27,8 +27,10 @@ public class SudokuBoardController {
         sudokuBoard2 = sudokuBoard.clone();
         sudokuBoard2 = level.handleLevel(sudokuBoard2);
 
+        //SimpleObjectProperty<SudokuBoard> sudokuBoardSimpleObjectProperty = new SimpleObjectProperty<>();
+        //sudokuBoardSimpleObjectProperty.bind(sudokuBoard);
         createFields();
-        ______________________________________________print(sudokuBoard2);
+        //______________________________________________print(sudokuBoard2);
 
     }
 
@@ -74,7 +76,7 @@ public class SudokuBoardController {
 
 
             createFields();
-            ______________________________________________print(sudokuBoard2);
+            // ______________________________________________print(sudokuBoard2);
 
 
         } catch (Exception e) {
@@ -124,9 +126,8 @@ public class SudokuBoardController {
                             if (validate(newValue) && !newValue.equals("")) {
                                 sudokuBoard2.set(x, y, Integer.valueOf(newValue));
                             }
-                            if (!validate(newValue) && newValue.equals(""))
-                            {
-                                sudokuBoard2.set(x,y, 0);
+                            if (!validate(newValue) && newValue.equals("")) {
+                                sudokuBoard2.set(x, y, 0);
                                 System.out.println("sudokuBoard2.get(x,y) = " + sudokuBoard2.get(x, y));
                             }
                         });
@@ -135,7 +136,10 @@ public class SudokuBoardController {
 
     public static void setLevel(Level level) {
         SudokuBoardController.level = level;
+    }
 
+    public static Level getLevel() {
+        return level;
     }
 
     void ______________________________________________print(SudokuBoard sudokuBoard) {

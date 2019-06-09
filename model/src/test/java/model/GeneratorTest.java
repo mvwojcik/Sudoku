@@ -1,15 +1,14 @@
 package model;
 
 import algorithms.BackTrackingSudokuSolver;
-import model.SudokuBoard;
+import exceptions.VerificationException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.TreeSet;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(value = TestInstance.Lifecycle.PER_CLASS)
 public class GeneratorTest {
@@ -49,7 +48,7 @@ public class GeneratorTest {
 
     @Test
     public void checkRandomBoardsGeneration() {
-        assertFalse(sudokuBoard1 == sudokuBoard2);
+        assertNotSame(sudokuBoard1, sudokuBoard2);
         assertFalse(sudokuBoard1.equals(sudokuBoard2));
     }
 
@@ -77,7 +76,11 @@ public class GeneratorTest {
     @Test
     public void checkAll()
     {
-       assertTrue(this.sudokuBoard1.checkBoard());
+        try {
+            assertTrue(this.sudokuBoard1.checkBoard());
+        } catch (VerificationException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,9 +1,14 @@
 package persistence.dao;
 
+import exceptions.DaoIOException;
+import exceptions.GenericException;
+import exceptions.ReaderIOException;
+import exceptions.WriterIOException;
+
 import java.io.*;
 import java.nio.file.Paths;
 
-public class FileLevelDao <T> implements Dao<T>, AutoCloseable{
+public class FileLevelDao<T> implements Dao<T>, AutoCloseable {
 
     ObjectOutputStream writer;
     ObjectInputStream reader;
@@ -14,37 +19,42 @@ public class FileLevelDao <T> implements Dao<T>, AutoCloseable{
         Paths.get(path);
     }
 
-    public T read() throws IOException, ClassNotFoundException {
-        reader = new ObjectInputStream(new FileInputStream(file));
-        T level = (T)reader.readObject();
-        System.out.println(level.hashCode());
-        return level;
-    }
-
-    @Override
-    public void write(T t) throws IOException {
-        writer = new ObjectOutputStream(new FileOutputStream(file));
-        writer.writeObject(t);
-        System.out.println(t.hashCode());
-
-    }
-/*
-    @Override
-    public void write(Level level) throws IOException {
-        writer = new ObjectOutputStream(new FileOutputStream(file));
-        writer.writeObject(level);
-        System.out.println(level.hashCode());
-    }
-*/
-    @Override
-    public void close() throws Exception {
-
-        if (this.reader != null)
-        {
-            reader.close();
+    public T read() throws ReaderIOException {
+        try {
+            reader = new ObjectInputStream(new FileInputStream(file));
+            return (T) reader.readObject();
+        } catch (IOException e) {
+throw new ReaderIOException("error.reader",e);
+        } catch (ClassNotFoundException e) {
+throw new GenericException("error.generic",e);
         }
-        else if(this.writer != null) {
-            writer.close();
+    }
+
+    @Override
+    public void write(T t) throws WriterIOException {
+        try {
+            writer = new ObjectOutputStream(new FileOutputStream(file));
+            writer.writeObject(t);
+        } catch (IOException e) {
+throw new WriterIOException("error.writer",e);
+        }
+    }
+
+    @Override
+    public void close() throws DaoIOException {
+
+        if (this.reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                throw new ReaderIOException("error.reader",e);
+            }
+        } else if (this.writer != null) {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                throw new WriterIOException("error.writer",e);
+            }
         }
 
     }

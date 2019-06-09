@@ -1,6 +1,5 @@
 package model;
 
-import model.SudokuField;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +45,7 @@ public class SudokuFieldTest {
 
         sudokuField1.setFieldValue(8);
 
-        assertEquals(sudokuField.compareTo(sudokuField1),1);
-        assertEquals(sudokuField1.compareTo(sudokuField),-1);
+        assertEquals(sudokuField.compareTo(sudokuField1),-1);
+        assertEquals(sudokuField1.compareTo(sudokuField),1);
     }
 }

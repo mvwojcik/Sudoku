@@ -1,5 +1,6 @@
 package pl.mwkc.utils;
 
+import exceptions.BoardException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,27 +21,29 @@ public class FXMLManager {
 
   public FXMLManager(Stage stage) {
 
-      locale = Locale.getDefault();
+      locale = Locale.forLanguageTag("pl-PL");
       bundle = ResourceBundle.getBundle("bundles.msgs",locale);
       this.stage = stage;
   }
 
-  public FXMLManager() {}
-
   private static FXMLLoader fxmlLoader(String path) {
-    FXMLLoader loader = new FXMLLoader(FXMLManager.class.getClass().getResource(path));
+    FXMLLoader loader = new FXMLLoader(FXMLManager.class.getResource(path));
       loader.setResources(ResourceBundle.getBundle("bundles.msgs",locale));
     return loader;
   }
 
-  public static Scene changeScene(String path) throws IOException {
+  private static Scene changeScene(String path) throws IOException {
     Parent parent = fxmlLoader(path).load();
 
     return new Scene(parent);
   }
 
-  public static void setStage(Stage stage, String path) throws IOException {
-    stage.setScene(changeScene(path));
+  public static void setStage(Stage stage, String path) throws BoardException {
+    try {
+      stage.setScene(changeScene(path));
+    } catch (IOException | IllegalStateException e) {
+      throw new BoardException(bundle.getString("error.path"), e);
+    }
     stage.setTitle("Sudoku");
     stage.show();
   }
