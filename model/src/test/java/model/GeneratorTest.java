@@ -1,6 +1,9 @@
 package model;
 
 import algorithms.BackTrackingSudokuSolver;
+import exceptions.FieldException;
+import exceptions.GroupException;
+import exceptions.SudokuSolverException;
 import exceptions.VerificationException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -24,8 +27,13 @@ public class GeneratorTest {
         this.sudokuBoard2 = new SudokuBoard();
         this.sudokuBoard1Solver = new BackTrackingSudokuSolver();
         this.sudokuBoard2Solver = new BackTrackingSudokuSolver();
-        sudokuBoard1Solver.solve(sudokuBoard1);
-        sudokuBoard2Solver.solve(sudokuBoard2);
+        try {
+            sudokuBoard1Solver.solve(sudokuBoard1);
+            sudokuBoard2Solver.solve(sudokuBoard2);
+
+        } catch (SudokuSolverException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -37,7 +45,11 @@ public class GeneratorTest {
                     for (int j = z * 3; j < 3 * z + 3; j++) {
 //                            System.out.print(sudokuBoard1.get(i, j));
 
-                        assertTrue(values.add(sudokuBoard1.get(i, j)));
+                        try {
+                            assertTrue(values.add(sudokuBoard1.get(i, j)));
+                        } catch (FieldException e) {
+                            e.printStackTrace();
+                        }
                     }
 //                        System.out.println();
                 }
@@ -53,7 +65,7 @@ public class GeneratorTest {
     }
 
     @Test
-    public void checkrows() {
+    public void checkrows() throws FieldException {
         for (int i = 0; i < 9; i++) {
             TreeSet<Integer> values = new TreeSet<>();
             for (int j = 0; j < 9; j++) {
@@ -64,7 +76,7 @@ public class GeneratorTest {
     }
 
     @Test
-    public void checkColumns() {
+    public void checkColumns() throws FieldException {
         for (int i = 0; i < 9; i++) {
             TreeSet<Integer> values = new TreeSet<>();
             for (int j = 0; j < 9; j++) {
@@ -79,6 +91,8 @@ public class GeneratorTest {
         try {
             assertTrue(this.sudokuBoard1.checkBoard());
         } catch (VerificationException e) {
+            e.printStackTrace();
+        } catch (GroupException e) {
             e.printStackTrace();
         }
     }

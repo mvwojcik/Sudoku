@@ -2,10 +2,7 @@ package model;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
-import model.SudokuBoard;
-import model.SudokuColumn;
-import model.SudokuField;
-import model.SudokuInsideList;
+import exceptions.SudokuSolverException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,8 +28,12 @@ public class SudokuGroupBaseTest {
     public void checkSetBoard() {
             SudokuBoard sudokuBoard1 = new SudokuBoard();
              SudokuSolver sudokuBoard1Solver = new BackTrackingSudokuSolver();
+        try {
             sudokuBoard1Solver.solve(sudokuBoard1);
-            assertEquals(1,1);
+        } catch (SudokuSolverException e) {
+            e.printStackTrace();
+        }
+        assertEquals(1,1);
 
 
     }

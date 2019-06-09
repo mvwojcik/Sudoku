@@ -3,6 +3,8 @@
  */
 package algorithms;
 
+import exceptions.FieldException;
+import exceptions.SudokuSolverException;
 import model.SudokuBoard;
 import pl.mwkc.utils.BoardUtils;
 
@@ -11,13 +13,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class BackTrackingSudokuSolver implements SudokuSolver {
-  public final void solve(final SudokuBoard sudokuBoard) {
+  public final void solve(final SudokuBoard sudokuBoard) throws SudokuSolverException {
     fillFirstRow(sudokuBoard);
-    solveSudoku(sudokuBoard, BoardUtils.SIZE);
+    try {
+      solveSudoku(sudokuBoard, BoardUtils.SIZE);
+    } catch (FieldException e) {
+throw new SudokuSolverException("error.solver",e);
+    }
   }
 
   private boolean isSafe(final SudokuBoard board,
-                         final int row, final int col, final int num) {
+                         final int row, final int col, final int num) throws FieldException {
 
     // Sprawdzamy czy ta liczba jest unikalna w wierszu
     for (int d = 0; d < BoardUtils.SIZE; d++) {
@@ -51,7 +57,7 @@ public class BackTrackingSudokuSolver implements SudokuSolver {
     return true;
   }
 
-  private boolean solveSudoku(final SudokuBoard board, final int n) {
+  private boolean solveSudoku(final SudokuBoard board, final int n) throws FieldException {
 
     int row = -1;
     int col = -1;
