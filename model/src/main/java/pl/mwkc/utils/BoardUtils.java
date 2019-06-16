@@ -1,7 +1,7 @@
 package pl.mwkc.utils;
 
-import model.SudokuField;
-import model.SudokuInsideList;
+import model.sudoku.SudokuField;
+import model.sudoku.SudokuInsideList;
 
 import java.util.List;
 

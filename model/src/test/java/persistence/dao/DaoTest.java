@@ -2,12 +2,8 @@ package persistence.dao;
 
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
-import model.SudokuBoard;
+import model.sudoku.SudokuBoard;
 import org.junit.jupiter.api.Test;
-import persistence.dao.Dao;
-import persistence.dao.SudokuBoardDaoFactory;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,15 +16,15 @@ public class DaoTest {
         sudokuSolver.solve(sudokuBoard);
 
 
-        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")) {
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao()) {
 
-            dao.write(sudokuBoard);
+            dao.write(sudokuBoard, "cieciu.txt");
 
         }
 
-        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao("cieciu.txt")) {
+        try (Dao<SudokuBoard> dao = SudokuBoardDaoFactory.getFileDao()) {
 
-            sudokuBoard = dao.read();
+            sudokuBoard = dao.read("cieciu.txt");
 
         }
 

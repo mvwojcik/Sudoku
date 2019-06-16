@@ -9,10 +9,10 @@ import javafx.scene.control.Slider;
 import javafx.util.StringConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.mwkc.modelfx.Easy;
-import pl.mwkc.modelfx.Hard;
-import pl.mwkc.modelfx.Intermediate;
-import pl.mwkc.modelfx.Level;
+import model.levels.Easy;
+import model.levels.Hard;
+import model.levels.Intermediate;
+import model.levels.Level;
 import pl.mwkc.utils.FXMLManager;
 
 import java.util.Locale;
@@ -58,7 +58,7 @@ public class MainSceneController {
         try {
             logger.info(FXMLManager.getBundle().getString("game.creating") +
                     "\n" + FXMLManager.getBundle().getString("game.level") +
-                    " " + Level.handleLevelNames(levelSlider.getValue()) +
+                    " " + FXMLManager.getBundle().getString(Level.handleLevelNames(levelSlider.getValue())) +
                     "\n" + FXMLManager.getBundle().getString("game.language") +
                     " " + FXMLManager.getLocale().getLanguage());
 
@@ -97,7 +97,7 @@ public class MainSceneController {
                 new StringConverter<Double>() {
                     @Override
                     public String toString(Double n) {
-                        return Level.handleLevelNames(n);
+                        return FXMLManager.getBundle().getString(Level.handleLevelNames(n));
                     }
 
                     @Override

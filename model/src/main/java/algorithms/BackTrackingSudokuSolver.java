@@ -5,7 +5,7 @@ package algorithms;
 
 import exceptions.FieldException;
 import exceptions.SudokuSolverException;
-import model.SudokuBoard;
+import model.sudoku.SudokuBoard;
 import pl.mwkc.utils.BoardUtils;
 
 import java.util.ArrayList;

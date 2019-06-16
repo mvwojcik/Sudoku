@@ -7,15 +7,35 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../stylesheets/SudokuBoardStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mwkc.controllers.SudokuBoardController">
+<BorderPane fx:id="border" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1280.0" stylesheets="@../stylesheets/SudokuBoardStylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mwkc.controllers.SudokuBoardController">
    <top>
       <HBox prefHeight="66.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#check" prefHeight="65.0" prefWidth="249.0" text="%game.check" />
-            <Label alignment="CENTER" prefHeight="66.0" prefWidth="431.0" text="%game.sudoku" />
-            <Button mnemonicParsing="false" onAction="#load" text="%game.load" />
-            <Button mnemonicParsing="false" onAction="#save" prefHeight="65.0" prefWidth="279.0" text="%game.save" />
+            <VBox prefHeight="130.0" prefWidth="450.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="66.0" prefWidth="411.0" text="%game.sudoku">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#check" prefHeight="65.0" prefWidth="368.0" text="%game.check" />
+               </children>
+            </VBox>
+            <VBox prefHeight="130.0" prefWidth="600.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#load" prefHeight="65.0" prefWidth="561.0" text="%game.load" />
+                  <Button mnemonicParsing="false" onAction="#loadDb" prefHeight="65.0" prefWidth="600.0" text="%game.loaddb" />
+               </children>
+            </VBox>
+            <VBox prefHeight="130.0" prefWidth="600.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#save" prefHeight="65.0" prefWidth="524.0" text="%game.save" />
+                  <Button mnemonicParsing="false" onAction="#saveDb" prefHeight="65.0" prefWidth="563.0" text="%game.savedb" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </top>

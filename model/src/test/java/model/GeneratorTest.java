@@ -5,6 +5,7 @@ import exceptions.FieldException;
 import exceptions.GroupException;
 import exceptions.SudokuSolverException;
 import exceptions.VerificationException;
+import model.sudoku.SudokuBoard;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -43,7 +44,6 @@ public class GeneratorTest {
                 for (int i = k * 3; i < 3 * k + 3; i++) {
                     TreeSet<Integer> values = new TreeSet<>();
                     for (int j = z * 3; j < 3 * z + 3; j++) {
-//                            System.out.print(sudokuBoard1.get(i, j));
 
                         try {
                             assertTrue(values.add(sudokuBoard1.get(i, j)));
@@ -51,9 +51,7 @@ public class GeneratorTest {
                             e.printStackTrace();
                         }
                     }
-//                        System.out.println();
                 }
-//                    System.out.println("\n");
             }
         }
     }

@@ -3,6 +3,9 @@ package model;
 import algorithms.BackTrackingSudokuSolver;
 import algorithms.SudokuSolver;
 import exceptions.SudokuSolverException;
+import model.sudoku.SudokuBoard;
+import model.sudoku.SudokuColumn;
+import model.sudoku.SudokuField;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

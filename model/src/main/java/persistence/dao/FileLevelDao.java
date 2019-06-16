@@ -1,27 +1,26 @@
 package persistence.dao;
 
-import exceptions.DaoIOException;
-import exceptions.GenericException;
-import exceptions.ReaderIOException;
-import exceptions.WriterIOException;
+import exceptions.*;
 
 import java.io.*;
-import java.nio.file.Paths;
 
 public class FileLevelDao<T> implements Dao<T>, AutoCloseable {
 
     ObjectOutputStream writer;
     ObjectInputStream reader;
-    private File file;
 
-    public FileLevelDao(String path) {
-        this.file = new File(path);
-        Paths.get(path);
+    public FileLevelDao() {
     }
 
-    public T read() throws ReaderIOException {
+    @Override
+    public void create() {
+
+    }
+
+    @Override
+    public T read(String name) throws ReaderIOException {
         try {
-            reader = new ObjectInputStream(new FileInputStream(file));
+            reader = new ObjectInputStream(new FileInputStream(new File(name)));
             return (T) reader.readObject();
         } catch (IOException e) {
 throw new ReaderIOException("error.reader",e);
@@ -31,13 +30,18 @@ throw new GenericException("error.generic",e);
     }
 
     @Override
-    public void write(T t) throws WriterIOException {
+    public void write(T t, String name) throws WriterIOException {
         try {
-            writer = new ObjectOutputStream(new FileOutputStream(file));
+            writer = new ObjectOutputStream(new FileOutputStream(new File(name)));
             writer.writeObject(t);
         } catch (IOException e) {
 throw new WriterIOException("error.writer",e);
         }
+    }
+
+    @Override
+    public void drop() throws DBException {
+
     }
 
     @Override

@@ -13,6 +13,6 @@
       <Slider fx:id="levelSlider" blockIncrement="1.0" layoutX="74.0" layoutY="101.0" max="3.0" prefHeight="18.0" prefWidth="422.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
       <Button layoutX="248.0" layoutY="332.0" mnemonicParsing="false" onAction="#confirm" text="%level.confirm" />
       <ComboBox fx:id="languageComboBox" layoutX="195.0" layoutY="169.0" onAction="#changeLanguage" prefWidth="150.0" />
-      <Button layoutX="55.0" layoutY="317.0" mnemonicParsing="false" onAction="#creditsOnAction" text="Credits" />
+      <Button layoutX="55.0" layoutY="317.0" mnemonicParsing="false" onAction="#creditsOnAction" text="%game.credits" />
    </children>
 </AnchorPane>

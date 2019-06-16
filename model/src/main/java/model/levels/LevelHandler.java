@@ -1,12 +1,13 @@
-package pl.mwkc.modelfx;
+package model.levels;
 
-import model.SudokuBoard;
+import exceptions.FieldException;
+import model.sudoku.SudokuBoard;
 
 import java.io.Serializable;
 import java.util.Random;
 
 public class LevelHandler implements Serializable {
-    public SudokuBoard handleLevel(SudokuBoard sudokuBoard, int val) {
+    public SudokuBoard handleLevel(SudokuBoard sudokuBoard, int val) throws FieldException {
         SudokuBoard sudokuBoardCopy = sudokuBoard.clone();
         Random random = new Random();
         for (int i = 0; i < val; i++) {

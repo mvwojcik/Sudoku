@@ -1,6 +1,7 @@
-package pl.mwkc.modelfx;
+package model.levels;
 
-import model.SudokuBoard;
+import exceptions.FieldException;
+import model.sudoku.SudokuBoard;
 
 public class Hard extends Level{
     private static final String name = "Hard";
@@ -14,14 +15,18 @@ public class Hard extends Level{
         return value;
     }
 
+    public Hard() {
+        super.name = this.name;
+    }
+
     @Override
-    public SudokuBoard handleLevel(SudokuBoard sudokuBoard) {
+    public SudokuBoard handleLevel(SudokuBoard sudokuBoard) throws FieldException {
         this.levelHandler = new LevelHandler();
 
         sudokuBoard = this.levelHandler.handleLevel(sudokuBoard,9);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                this.dis[i][j] = sudokuBoard.get(i, j) == 0;
+                this.lock[i][j] = sudokuBoard.get(i, j) == 0;
             }
         }
         return sudokuBoard;

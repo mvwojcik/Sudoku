@@ -1,21 +1,25 @@
-package pl.mwkc.modelfx;
+package model.levels;
 
-import model.SudokuBoard;
-import pl.mwkc.utils.FXMLManager;
+import exceptions.FieldException;
+import model.sudoku.SudokuBoard;
 
 import java.io.Serializable;
 
 public abstract class Level implements Serializable {
 
-    boolean [][] dis = new boolean[9][9];
+    boolean[][] lock = new boolean[9][9];
     LevelHandler levelHandler;
 
-    private static String name;
+    protected static String name;
 
-    public abstract SudokuBoard handleLevel(SudokuBoard sudokuBoard);
+    public abstract SudokuBoard handleLevel(SudokuBoard sudokuBoard) throws FieldException;
 
-    public boolean getDis(int x, int y) {
-        return dis[x][y];
+    public boolean getLock(int x, int y) {
+        return lock[x][y];
+    }
+
+    public void setLock(int x, int y, boolean val) {
+        this.lock[x][y] = val;
     }
 
     public static String getName() {
@@ -34,10 +38,10 @@ public abstract class Level implements Serializable {
     }
 
     public static String handleLevelNames(Double n) {
-        if (n == Easy.getValue()) return FXMLManager.getBundle().getString("level.easy");
+        if (n == Easy.getValue()) return "level.easy";
         else if (n == Intermediate.getValue())
-            return FXMLManager.getBundle().getString("level.intermediate");
+            return "level.intermediate";
 
-        return FXMLManager.getBundle().getString("level.hard");
+        return "level.hard";
     }
 }

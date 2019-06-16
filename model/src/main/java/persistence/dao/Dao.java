@@ -1,14 +1,17 @@
 package persistence.dao;
 
+import exceptions.DBException;
+import exceptions.FieldException;
 import exceptions.ReaderIOException;
 import exceptions.WriterIOException;
 
-import java.io.IOException;
-
 public interface Dao <T> extends AutoCloseable{
 
-    T read() throws IOException, ClassNotFoundException, ReaderIOException;
+    void create();
 
-    void write(T t) throws IOException, WriterIOException;
+    T read(String name) throws ReaderIOException, DBException;
 
+    void write(T t, String name) throws WriterIOException, FieldException, DBException;
+
+    void drop() throws DBException;
 }

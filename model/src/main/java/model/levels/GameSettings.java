@@ -1,6 +1,6 @@
-package pl.mwkc.modelfx;
+package model.levels;
 
-import model.SudokuBoard;
+import model.sudoku.SudokuBoard;
 
 import java.util.Random;
 
