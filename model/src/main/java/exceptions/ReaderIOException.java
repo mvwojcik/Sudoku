@@ -1,11 +1,11 @@
 package exceptions;
 
 public class ReaderIOException extends DaoIOException {
-    public ReaderIOException(String message) {
+    public ReaderIOException(final String message) {
         super(message);
     }
 
-    public ReaderIOException(String message, Throwable cause) {
+    public ReaderIOException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

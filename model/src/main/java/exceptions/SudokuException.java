@@ -1,10 +1,11 @@
 package exceptions;
 
 public class SudokuException extends Exception {
-    public SudokuException(String message) {
+    public SudokuException(final String message) {
         super(message);
     }
-    public SudokuException(String message, Throwable cause) {
+
+    public SudokuException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

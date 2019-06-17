@@ -1,11 +1,12 @@
 package exceptions;
 
 public class DBException extends DaoIOException {
-    public DBException(String message) {
+    public DBException(final String message) {
         super(message);
     }
 
-    public DBException(String message, Throwable cause) {
+    public DBException
+            (final String message, final Throwable cause) {
         super(message, cause);
     }
 }

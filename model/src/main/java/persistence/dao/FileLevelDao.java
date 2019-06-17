@@ -23,9 +23,9 @@ public class FileLevelDao<T> implements Dao<T>, AutoCloseable {
             reader = new ObjectInputStream(new FileInputStream(new File(name)));
             return (T) reader.readObject();
         } catch (IOException e) {
-throw new ReaderIOException("error.reader",e);
+            throw new ReaderIOException("error.reader", e);
         } catch (ClassNotFoundException e) {
-throw new GenericException("error.generic",e);
+            throw new GenericException("error.generic", e);
         }
     }
 
@@ -35,7 +35,7 @@ throw new GenericException("error.generic",e);
             writer = new ObjectOutputStream(new FileOutputStream(new File(name)));
             writer.writeObject(t);
         } catch (IOException e) {
-throw new WriterIOException("error.writer",e);
+            throw new WriterIOException("error.writer", e);
         }
     }
 
@@ -51,13 +51,13 @@ throw new WriterIOException("error.writer",e);
             try {
                 reader.close();
             } catch (IOException e) {
-                throw new ReaderIOException("error.reader",e);
+                throw new ReaderIOException("error.reader", e);
             }
         } else if (this.writer != null) {
             try {
                 writer.close();
             } catch (IOException e) {
-                throw new WriterIOException("error.writer",e);
+                throw new WriterIOException("error.writer", e);
             }
         }
 

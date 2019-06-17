@@ -16,15 +16,14 @@ class JdbcSudokuBoardDaoTest {
         sudokuBoard1Solver = new BackTrackingSudokuSolver();
         sudokuBoard1Solver.solve(sudokuBoard1);
 
-Easy easy = new Easy();
-easy.handleLevel(sudokuBoard1);
+        Easy easy = new Easy();
+        easy.handleLevel(sudokuBoard1);
         JdbcSudokuBoardDao jdbcSudokuBoardDao = new JdbcSudokuBoardDao(easy);
 
         jdbcSudokuBoardDao.drop();
         jdbcSudokuBoardDao.create();
-        jdbcSudokuBoardDao.write(sudokuBoard1,"Jazda526");
+        jdbcSudokuBoardDao.write(sudokuBoard1, "Jazda526");
         jdbcSudokuBoardDao.read("Jazda526");
-        jdbcSudokuBoardDao.drop();
         jdbcSudokuBoardDao.close();
 
     }

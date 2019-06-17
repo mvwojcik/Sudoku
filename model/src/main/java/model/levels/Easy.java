@@ -3,31 +3,33 @@ package model.levels;
 
 import exceptions.FieldException;
 import model.sudoku.SudokuBoard;
+import pl.mwkc.utils.BoardUtils;
 
 public class Easy extends Level {
-    private static final String name = "Easy";
-    private static final int value = 0;
+    private static final String NAME = "Easy";
+    private static final int VALUE = 0;
 
 
     public static String getName() {
-        return name;
+        return NAME;
     }
 
     public static int getValue() {
-        return value;
+        return VALUE;
     }
 
     public Easy() {
-        super.name = this.name;
+        super.NAME = this.NAME;
     }
 
     @Override
-    public SudokuBoard handleLevel(SudokuBoard sudokuBoard) throws FieldException {
+    public final SudokuBoard handleLevel
+            (SudokuBoard sudokuBoard) throws FieldException {
         this.levelHandler = new LevelHandler();
 
-        sudokuBoard = this.levelHandler.handleLevel(sudokuBoard,9);
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        sudokuBoard = this.levelHandler.handleLevel(sudokuBoard, 2);
+        for (int i = 0; i < BoardUtils.SIZE; i++) {
+            for (int j = 0; j < BoardUtils.SIZE; j++) {
                 this.lock[i][j] = sudokuBoard.get(i, j) == 0;
             }
         }

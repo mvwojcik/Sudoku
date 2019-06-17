@@ -1,11 +1,11 @@
 package exceptions;
 
-public class GroupException extends BoardException{
-    public GroupException(String message) {
+public class GroupException extends BoardException {
+    public GroupException(final String message) {
         super(message);
     }
 
-    public GroupException(String message, Throwable cause) {
+    public GroupException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

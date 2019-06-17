@@ -11,7 +11,7 @@ public class SudokuBoardDaoFactory {
         return new FileSudokuBoardDao();
     }
 
-    public static<T> Dao<T> getLevelDao() {
+    public static <T> Dao<T> getLevelDao() {
         return new FileLevelDao<T>();
     }
 

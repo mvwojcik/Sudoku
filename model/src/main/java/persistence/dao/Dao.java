@@ -5,7 +5,7 @@ import exceptions.FieldException;
 import exceptions.ReaderIOException;
 import exceptions.WriterIOException;
 
-public interface Dao <T> extends AutoCloseable{
+public interface Dao<T> extends AutoCloseable {
 
     void create();
 

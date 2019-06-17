@@ -1,11 +1,11 @@
 package exceptions;
 
 public class GenericException extends ReaderIOException {
-    public GenericException(String message) {
+    public GenericException(final String message) {
         super(message);
     }
 
-    public GenericException(String message, Throwable cause) {
+    public GenericException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

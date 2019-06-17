@@ -1,11 +1,11 @@
 package exceptions;
 
 public class SudokuSolverException extends BoardException {
-    public SudokuSolverException(String message) {
+    public SudokuSolverException(final String message) {
         super(message);
     }
 
-    public SudokuSolverException(String message, Throwable cause) {
+    public SudokuSolverException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }
