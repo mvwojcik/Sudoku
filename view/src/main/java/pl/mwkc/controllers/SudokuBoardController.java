@@ -4,6 +4,7 @@ import algorithms.BackTrackingSudokuSolver;
 import exceptions.*;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
@@ -24,8 +25,6 @@ public class SudokuBoardController {
     private SudokuBoard sudokuBoard;
     private static Level level;
     private SudokuBoard sudokuBoard2;
-    @FXML
-    private BorderPane border;
 
     private static Logger logger = LoggerFactory.getLogger(SudokuBoardController.class);
 
@@ -65,20 +64,20 @@ public class SudokuBoardController {
 
     @FXML
     void check() {
-        if (sudokuBoard2.equals(sudokuBoard)) {
-            logger.info(FXMLManager.getBundle().getString("game.win"));
-        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         try {
-            if(sudokuBoard2.checkBoard()) {
+            if (sudokuBoard2.checkBoard()) {
                 logger.info(FXMLManager.getBundle().getString("game.win"));
+                alert.setHeaderText(FXMLManager.getBundle().getString("game.win"));
+                alert.setTitle(FXMLManager.getBundle().getString("game.end"));
+                alert.showAndWait();
             }
-            else
-            {
-                logger.info(FXMLManager.getBundle().getString("game.lose"));
-            }
+        } catch (GroupException | VerificationException e) {
+            logger.info(FXMLManager.getBundle().getString("game.lose"));
+            alert.setHeaderText(FXMLManager.getBundle().getString("game.lose"));
+            alert.setTitle(FXMLManager.getBundle().getString("game.end"));
+            alert.showAndWait();
 
-        } catch (VerificationException | GroupException e) {
-            FXMLManager.getBundle().getString(e.getMessage());
         }
 
     }
@@ -90,7 +89,7 @@ public class SudokuBoardController {
             dao.write(this.sudokuBoard, "zapis.sudoku");
             dao.write(this.sudokuBoard2, "zapis.sudoku");
             dao1.write(level, "zapis.level");
-
+            logger.info(FXMLManager.getBundle().getString("file.save"));
         } catch (FieldException | DBException | WriterIOException e) {
             logger.error(FXMLManager.getBundle().getString(e.getMessage()));
         } catch (Exception e) {
@@ -104,12 +103,12 @@ public class SudokuBoardController {
              Dao<Level> dao2 = SudokuBoardDaoFactory.getLevelDao()) {
             SudokuBoard boardOrigin = dao.read("zapis.sudoku");
             SudokuBoard board = dao.read("zapis.sudoku");
+            logger.info(FXMLManager.getBundle().getString("file.load"));
             this.sudokuBoard = boardOrigin;
             this.sudokuBoard2 = board;
             level = dao2.read("zapis.level");
 
             gridPane.getChildren().remove(0, 81);
-
 
             createFields();
 
@@ -126,7 +125,7 @@ public class SudokuBoardController {
             dao.create();
             String s = editDialog();
             dao.write(sudokuBoard2, s);
-            logger.info(FXMLManager.getBundle().getString("DB.saved")+" " + s);
+            logger.info(FXMLManager.getBundle().getString("DB.saved") + " " + s);
 
         } catch (DBException e) {
             e.printStackTrace();
@@ -141,8 +140,8 @@ public class SudokuBoardController {
             String s = editDialog();
 
             this.sudokuBoard2 = dao.read(s);
-            logger.info(FXMLManager.getBundle().getString("DB.readed")+" " + s);
-            level = ((JdbcSudokuBoardDao) dao ).getLevel();
+            logger.info(FXMLManager.getBundle().getString("DB.readed") + " " + s);
+            level = ((JdbcSudokuBoardDao) dao).getLevel();
             gridPane.getChildren().remove(0, 81);
 
             createFields();

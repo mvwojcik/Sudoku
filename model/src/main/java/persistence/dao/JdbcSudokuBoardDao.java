@@ -73,7 +73,6 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
@@ -93,7 +92,7 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
                 this.level = new Intermediate();
             }
         } catch (SQLException e) {
-
+            throw new DBException("error.db");
         }
         Statement statement2 = null;
         try {
@@ -163,8 +162,8 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
                 connection.rollback();
                 throw new DBException("error.db");
             } catch (SQLException e1) {
+                throw new DBException("error.db");
             }
-
         }
 
     }

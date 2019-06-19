@@ -24,7 +24,7 @@ public abstract class Level implements Serializable {
         this.lock[x][y] = val;
     }
 
-    public final static String getName() {
+    public static String getName() {
         return NAME;
     }
 
